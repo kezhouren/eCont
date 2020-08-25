@@ -1,6 +1,7 @@
 #ifndef PAGE_H
 #define PAGE_H
 
+/*store a page structure in memory*/
 class page
 {
     int m_total_page;
