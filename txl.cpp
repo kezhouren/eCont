@@ -4,7 +4,8 @@
 #include<stdlib.h>
 #include<string.h>
 #include<math.h>
-
+#include<cstring>
+#include<iostream>
 using namespace std;
 //节点结构体
 typedef struct NODE
