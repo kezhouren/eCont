@@ -1,14 +1,14 @@
 #ifndef RECORDH
 #define RECORD_H
 
-/*a record store information of a contacter, include primary key id,name two phone number and adress*/
+/*a record store information of a contacter, include primary key id,name,phone number,age and adress*/
 class record
 {
 private:
     int m_id;
     char *m_name;
-    char *m_1st_phonenum;
-    char *m_2nd_phonenum;
+    char *m_phonenum;
+    int m_age;/*
     struct adress
     {
         char* m_provence;
@@ -18,12 +18,11 @@ private:
         char* m_district;
         char* m_village;
     
-    }m_adress;
+    }m_adress;*/
 public:
     int get_id();
     char* get_name();
-    char* get_1st_phonenum();
-    char* get_2nd_phonenum();
+    char* get_phonenum();
     char* get_provence();
     char* get_city();
     char* get_county();
