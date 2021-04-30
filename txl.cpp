@@ -124,7 +124,7 @@ char* GetName()//获取名字
 	{
 		name[i] = 'a'+rand()%26;
 	}
-	strcpy_s(p,6,name);//
+	strcpy(p, name);//
 	/*
 strcpy_s(b, a)
 意思是将a拷贝给b,但是一定要保证b装的下a，否则会报错
@@ -176,17 +176,17 @@ char* GetPhone()//获取电话号
 	switch(rand()%4)
 	{
 		case 0:
-			strcpy_s(p,12,"131");
+			strcpy(p,"131");
 			//phone要拷贝到的地方，phone的大小，要拷贝的字符串，到\0结束，所以第三个参数不能大于第一个参数
 			break;
 		case 1:
-			strcpy_s(p,12,"156");
+			strcpy(p,"156");
 			break;
 		case 2:
-			strcpy_s(p,12,"136");
+			strcpy(p,"136");
 			break;
 		case 3:
-			strcpy_s(p,12,"188");
+			strcpy(p,"188");
 			break;		
 	}
 	for(int i=0;i<8;i++)
@@ -195,7 +195,7 @@ char* GetPhone()//获取电话号
 		//数字变为字符，数字，要变成字符串的地址，字符串的大小，几进制
 		phone[i] = rand()%10+'0';
 	}
-	strcat_s(p,12,phone);
+	strcat(p, phone);
 	return p;
 /*
 	int i;

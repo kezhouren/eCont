@@ -1,5 +1,10 @@
 #ifndef OPERATION_H
 #define OPERATION_H
+#include "create_data.h"
+#include <vector>
+/*initialize information*/
+void init_data(int number, std::vector<Record> list);
+
 /* main operation include five operations*/
 void look_eCont();  //aways look before operate the eCont
 void query_eCont(); //query a record from eCont
@@ -8,20 +13,20 @@ void delete_eCont();
 void update_eCont();
 
 
-/*show main view */
+/*print main views */
 void show_eCont();
 void show_menu();
 void show_all();
+void show_help();
+
 
 /*input data from outside*/
 char* input_name();
-char* input_1st_phonenum();
-char* input_2nd_phonenum();
+char* input_phone_number();
 char* input_record();
 
 /*get something from data*/
 char* get_name();
-char* get_1st_phonenum();
 char* get_2nd_phonenum();
 char* get_record();
 
