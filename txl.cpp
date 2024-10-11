@@ -7,7 +7,7 @@
 #include<cstring>
 #include<iostream>
 using namespace std;
-//½Úµã½á¹¹Ìå
+//èŠ‚ç‚¹ç»“æ„ä½“
 typedef struct NODE
 {
 	int xh;
@@ -15,7 +15,7 @@ typedef struct NODE
 	char* phone;
 	struct NODE* pNext;
 }Node;
-//·ÖÒ³½á¹¹Ìå
+//åˆ†é¡µç»“æ„ä½“
 typedef struct PAGE
 {
 	int TotalItem;
@@ -26,28 +26,28 @@ typedef struct PAGE
 
 int g_menu_type = 0;
 char g_key;
-void InitInfo(Node** top,Node** end,int n);//³õÊ¼»¯ĞÅÏ¢
-char GetKey();//»ñÈ¡¼üÅÌÊı×ÖÊäÈë
+void InitInfo(Node** top,Node** end,int n);//åˆå§‹åŒ–ä¿¡æ¯
+char GetKey();//è·å–é”®ç›˜æ•°å­—è¾“å…¥
 
-char* GetName();//»ñÈ¡Ãû×Ö
-char* GetPhone();//»ñÈ¡µç»°ºÅ
-int GetNumber();//»ñÈ¡±àºÅ
-Node* GetNode();//»ñÈ¡Ò»¸ö½Úµã
+char* GetName();//è·å–åå­—
+char* GetPhone();//è·å–ç”µè¯å·
+int GetNumber();//è·å–ç¼–å·
+Node* GetNode();//è·å–ä¸€ä¸ªèŠ‚ç‚¹
 
-char* InputName();//ÊäÈëÒ»¸öÃû×Ö
-char* InputPhone();//ÊäÈëÒ»¸öµç»°ºÅ
-int InputNumber();//ÊäÈëÒ»¸ö±àºÅ
-Node* InputNode();//ÊäÈëÒ»¸ö½Úµã
+char* InputName();//è¾“å…¥ä¸€ä¸ªåå­—
+char* InputPhone();//è¾“å…¥ä¸€ä¸ªç”µè¯å·
+int InputNumber();//è¾“å…¥ä¸€ä¸ªç¼–å·
+Node* InputNode();//è¾“å…¥ä¸€ä¸ªèŠ‚ç‚¹
 
-void LookTXL(Node* top);//²é¿´
-void QueryTXL(Node* top);//²éÑ¯
-void AddNode(Node** top,Node** end,Node* node);	//Ìí¼Ó½Úµã
-void DelNode(Node** top,Node** end,int n);//É¾³ı½Úµã
-void DelTXL(Node** top,Node** end);//É¾³ı			
-void UpDateTXL(Node* top);//ĞŞ¸Ä
-void Show(Node* top,Page* page);//ÏÔÊ¾
+void LookTXL(Node* top);//æŸ¥çœ‹
+void QueryTXL(Node* top);//æŸ¥è¯¢
+void AddNode(Node** top,Node** end,Node* node);	//æ·»åŠ èŠ‚ç‚¹
+void DelNode(Node** top,Node** end,int n);//åˆ é™¤èŠ‚ç‚¹
+void DelTXL(Node** top,Node** end);//åˆ é™¤			
+void UpDateTXL(Node* top);//ä¿®æ”¹
+void Show(Node* top,Page* page);//æ˜¾ç¤º
 void ShowMenu(Page* page);
-void ShowALL(Node* top);//È«²¿ÏÔÊ¾
+void ShowALL(Node* top);//å…¨éƒ¨æ˜¾ç¤º
 Page* InitPage(Node* top,int n);
 void OperatePage(Page* page,Node* top);
 
@@ -56,20 +56,20 @@ int main()
 	Node* top = NULL;
 	Node* end = NULL;
 	//Page* page = NULL;
-	//³õÊ¼»¯ĞÅÏ¢
+	//åˆå§‹åŒ–ä¿¡æ¯
 	InitInfo(&top,&end,49);
 	
 	char key;
 	
 	while(1)
 	{
-		printf("1.²é¿´Í¨Ñ¶Â¼\n");
-		printf("2.²éÑ¯Í¨Ñ¶Â¼\n");
-		printf("3.Ìí¼ÓÍ¨Ñ¶Â¼\n");
-		printf("4.É¾³ıÍ¨Ñ¶Â¼\n");
-		printf("5.ĞŞ¸ÄÍ¨Ñ¶Â¼\n");
-		printf("6.ÍË³öÍ¨Ñ¶Â¼\n");
-		//»ñÈ¡¼üÅÌÊı×ÖÊäÈë
+		printf("1.æŸ¥çœ‹é€šè®¯å½•\n");
+		printf("2.æŸ¥è¯¢é€šè®¯å½•\n");
+		printf("3.æ·»åŠ é€šè®¯å½•\n");
+		printf("4.åˆ é™¤é€šè®¯å½•\n");
+		printf("5.ä¿®æ”¹é€šè®¯å½•\n");
+		printf("6.é€€å‡ºé€šè®¯å½•\n");
+		//è·å–é”®ç›˜æ•°å­—è¾“å…¥
 		key = GetKey();
 		switch(key)
 		{
@@ -97,18 +97,18 @@ int main()
 				return 0;
 				break;
 			default:
-				printf("ÇëÊäÈëÕıÈ·µÄÊı×Ö£¡\n");
+				printf("è¯·è¾“å…¥æ­£ç¡®çš„æ•°å­—ï¼\n");
 				break;
 		}
 	}
 	return 0;
 }
-char GetKey()//»ñÈ¡¼üÅÌÊı×ÖÊäÈë
+char GetKey()//è·å–é”®ç›˜æ•°å­—è¾“å…¥
 {
 	char c,v;
 	int a = 0;
-	//int a;scanf("%d",&a);//123\n£¬°Ñ123¸³¸øa£¬ÊäÈë»º³åÇøÖĞ»¹ÓĞÒ»¸ö\n£¬Ó¦¸ÃÈ¡³öÀ´£¬getchar£¨£©
-	//ÎŞ || a == 0µÄÇé¿ö£ºÈôÊäÈë»º³åÇøÖĞÒÑ¾­´æÔÚÒ»¸ö\n£¬ÔòÑ­»·Ö±½ÓÍË³ö£¬vÎªÒ»¸öÀ¬»øÖµ£¬·µ»ØËüÃ»ÒâÒå
+	//int a;scanf("%d",&a);//123\nï¼ŒæŠŠ123èµ‹ç»™aï¼Œè¾“å…¥ç¼“å†²åŒºä¸­è¿˜æœ‰ä¸€ä¸ª\nï¼Œåº”è¯¥å–å‡ºæ¥ï¼Œgetcharï¼ˆï¼‰
+	//æ—  || a == 0çš„æƒ…å†µï¼šè‹¥è¾“å…¥ç¼“å†²åŒºä¸­å·²ç»å­˜åœ¨ä¸€ä¸ª\nï¼Œåˆ™å¾ªç¯ç›´æ¥é€€å‡ºï¼Œvä¸ºä¸€ä¸ªåƒåœ¾å€¼ï¼Œè¿”å›å®ƒæ²¡æ„ä¹‰
 	while((c=getchar()) != '\n' || a == 0)
 	{
 		v = c;
@@ -116,7 +116,7 @@ char GetKey()//»ñÈ¡¼üÅÌÊı×ÖÊäÈë
 	}
 	return v;
 }
-char* GetName()//»ñÈ¡Ãû×Ö
+char* GetName()//è·å–åå­—
 {
 	char name[6]={0};
 	char* p = (char*)malloc(6);
@@ -127,7 +127,7 @@ char* GetName()//»ñÈ¡Ãû×Ö
 	strcpy(p, name);//
 	/*
 strcpy_s(b, a)
-ÒâË¼ÊÇ½«a¿½±´¸øb,µ«ÊÇÒ»¶¨Òª±£Ö¤b×°µÄÏÂa£¬·ñÔò»á±¨´í
+æ„æ€æ˜¯å°†aæ‹·è´ç»™b,ä½†æ˜¯ä¸€å®šè¦ä¿è¯bè£…çš„ä¸‹aï¼Œå¦åˆ™ä¼šæŠ¥é”™
 void main()
 {
 	 char str[10], str1[9];
@@ -137,20 +137,20 @@ void main()
 	 }
 	 strcpy_s(str, sizeof(str), str1);
  }
-ÉÏÊö´úÂëÔËĞĞÊ±Òì³£¡£ÎªÊ²Ã´»á³öÏÖÒì³££¿
-strcpy_sÊÇ¸ù¾İ'\0'ÅĞ¶ÏÔ´×Ö·û´®½áÊøµÄ
-´úÂëÖĞµÄstr1[9]µÄ9¸öÊı×é³ÉÔ±¶¼±»¸³ÖµÎª'a'£¬Ã»ÓĞ½áÊø·û'\0'£¬
-Òò´Ëstrcpy_sÔÚ¸´ÖÆÍêstr1µÄ9¸ö×Ö·ûºó»¹ÔÚ¼ÌĞø¸³ÖµÆäºóµÄÄÚ´æ£¬
-²¢ÇÒ×îÖÕ¸´ÖÆµÄ×Ö·ûÊı´óÓÚÁËÄ¿±ê»º³åÇøµÄ³¤¶È10£¬Òò´ËÒı·¢´Ë¶ÏÑÔÊ§°Ü¡£
+ä¸Šè¿°ä»£ç è¿è¡Œæ—¶å¼‚å¸¸ã€‚ä¸ºä»€ä¹ˆä¼šå‡ºç°å¼‚å¸¸ï¼Ÿ
+strcpy_sæ˜¯æ ¹æ®'\0'åˆ¤æ–­æºå­—ç¬¦ä¸²ç»“æŸçš„
+ä»£ç ä¸­çš„str1[9]çš„9ä¸ªæ•°ç»„æˆå‘˜éƒ½è¢«èµ‹å€¼ä¸º'a'ï¼Œæ²¡æœ‰ç»“æŸç¬¦'\0'ï¼Œ
+å› æ­¤strcpy_såœ¨å¤åˆ¶å®Œstr1çš„9ä¸ªå­—ç¬¦åè¿˜åœ¨ç»§ç»­èµ‹å€¼å…¶åçš„å†…å­˜ï¼Œ
+å¹¶ä¸”æœ€ç»ˆå¤åˆ¶çš„å­—ç¬¦æ•°å¤§äºäº†ç›®æ ‡ç¼“å†²åŒºçš„é•¿åº¦10ï¼Œå› æ­¤å¼•å‘æ­¤æ–­è¨€å¤±è´¥ã€‚
 
-ÎÊÌâ³öÔÚ³ÌĞòÓï¾ä£¨¼ûÏÂ£©£º
+é—®é¢˜å‡ºåœ¨ç¨‹åºè¯­å¥ï¼ˆè§ä¸‹ï¼‰ï¼š
 strcpy_s(p,strlen(p1),p1);
 strcpy_s(p1,strlen(p2),p2);
 strcpy_s(p2,strlen(p),p);
-ÆäÖĞ£¬×Ö·û´®p1ºÍp2·Ö±ğÖ¸ÏòÄ³¸ö×Ö·û´®£¬pÊÇ¶¨ÒåµÄÒ»¸ö×Ö·ûÊı×é¡£ÎÊÌâ³öÏÖÔÚ¶Ôstrlen()µÄÊ¹ÓÃ£¬Õâ¸öº¯Êı¼ÆËãµÄ×Ö·û´®³¤¶ÈÊÇ²»°üÀ¨'\0¡¯µÄ£¬
-ËùÒÔÔÚÉèÖÃµÚ¶ş¸ö²ÎÊı£¨»º³åÇø³¤¶È£©Ê±£¬¾Í»á³öÏÖÒì³££¬ÒòÎªÔÚ¿½±´Ê±ĞèÒª½«×Ö·û´®µÄ½áÊø±êÖ¾Ò²ÒªÒ»Í¬¿½±´¹ıÈ¥£¬
-ËùÒÔ£¬ÉÏÃæÌáÊ¾Buffer is too small¾Í±íÃ÷µÚ¶ş¸ö²ÎÊıÉèÖÃµÄÖµĞ¡ÓÚÔ´×Ö·û´®¡£
-ËùÒÔ½â¾ö·½·¨¾ÍÊÇ£º½«strlen(p1)ĞŞ¸ÄÎªstrlen(p1)+1£¬ÈçÏÂÍ¼£¬ĞŞ¸Äºóµ÷ÊÔÍ¨¹ı¡£
+å…¶ä¸­ï¼Œå­—ç¬¦ä¸²p1å’Œp2åˆ†åˆ«æŒ‡å‘æŸä¸ªå­—ç¬¦ä¸²ï¼Œpæ˜¯å®šä¹‰çš„ä¸€ä¸ªå­—ç¬¦æ•°ç»„ã€‚é—®é¢˜å‡ºç°åœ¨å¯¹strlen()çš„ä½¿ç”¨ï¼Œè¿™ä¸ªå‡½æ•°è®¡ç®—çš„å­—ç¬¦ä¸²é•¿åº¦æ˜¯ä¸åŒ…æ‹¬'\0â€™çš„ï¼Œ
+æ‰€ä»¥åœ¨è®¾ç½®ç¬¬äºŒä¸ªå‚æ•°ï¼ˆç¼“å†²åŒºé•¿åº¦ï¼‰æ—¶ï¼Œå°±ä¼šå‡ºç°å¼‚å¸¸ï¼Œå› ä¸ºåœ¨æ‹·è´æ—¶éœ€è¦å°†å­—ç¬¦ä¸²çš„ç»“æŸæ ‡å¿—ä¹Ÿè¦ä¸€åŒæ‹·è´è¿‡å»ï¼Œ
+æ‰€ä»¥ï¼Œä¸Šé¢æç¤ºBuffer is too smallå°±è¡¨æ˜ç¬¬äºŒä¸ªå‚æ•°è®¾ç½®çš„å€¼å°äºæºå­—ç¬¦ä¸²ã€‚
+æ‰€ä»¥è§£å†³æ–¹æ³•å°±æ˜¯ï¼šå°†strlen(p1)ä¿®æ”¹ä¸ºstrlen(p1)+1ï¼Œå¦‚ä¸‹å›¾ï¼Œä¿®æ”¹åè°ƒè¯•é€šè¿‡ã€‚
 strcpy_s(p,strlen(p1)+1,p1);
 strcpy_s(p1,strlen(p2)+1,p2);
 strcpy_s(p2,strlen(p)+1,p);
@@ -169,7 +169,7 @@ strcpy_s(p2,strlen(p)+1,p);
 	//}
 	//return name;
 }
-char* GetPhone()//»ñÈ¡µç»°ºÅ
+char* GetPhone()//è·å–ç”µè¯å·
 {
 	char phone[11]={0};
 	char* p = (char*)malloc(12);
@@ -177,7 +177,7 @@ char* GetPhone()//»ñÈ¡µç»°ºÅ
 	{
 		case 0:
 			strcpy(p,"131");
-			//phoneÒª¿½±´µ½µÄµØ·½£¬phoneµÄ´óĞ¡£¬Òª¿½±´µÄ×Ö·û´®£¬µ½\0½áÊø£¬ËùÒÔµÚÈı¸ö²ÎÊı²»ÄÜ´óÓÚµÚÒ»¸ö²ÎÊı
+			//phoneè¦æ‹·è´åˆ°çš„åœ°æ–¹ï¼Œphoneçš„å¤§å°ï¼Œè¦æ‹·è´çš„å­—ç¬¦ä¸²ï¼Œåˆ°\0ç»“æŸï¼Œæ‰€ä»¥ç¬¬ä¸‰ä¸ªå‚æ•°ä¸èƒ½å¤§äºç¬¬ä¸€ä¸ªå‚æ•°
 			break;
 		case 1:
 			strcpy(p,"156");
@@ -192,7 +192,7 @@ char* GetPhone()//»ñÈ¡µç»°ºÅ
 	for(int i=0;i<8;i++)
 	{
 		//_itoa_s(rand()%10,c,2,10);
-		//Êı×Ö±äÎª×Ö·û£¬Êı×Ö£¬Òª±ä³É×Ö·û´®µÄµØÖ·£¬×Ö·û´®µÄ´óĞ¡£¬¼¸½øÖÆ
+		//æ•°å­—å˜ä¸ºå­—ç¬¦ï¼Œæ•°å­—ï¼Œè¦å˜æˆå­—ç¬¦ä¸²çš„åœ°å€ï¼Œå­—ç¬¦ä¸²çš„å¤§å°ï¼Œå‡ è¿›åˆ¶
 		phone[i] = rand()%10+'0';
 	}
 	strcat(p, phone);
@@ -224,13 +224,13 @@ char* GetPhone()//»ñÈ¡µç»°ºÅ
 	return phone;*/
 
 }
-int GetNumber()//»ñÈ¡±àºÅ
+int GetNumber()//è·å–ç¼–å·
 {
 	static int i = 0;
 	i++;
 	return i;
 }
-char* InputName()//ÊäÈëÒ»¸öÃû×Ö
+char* InputName()//è¾“å…¥ä¸€ä¸ªåå­—
 {
 	/*char c;
 	char* name = (char*)malloc(7);
@@ -239,7 +239,7 @@ char* InputName()//ÊäÈëÒ»¸öÃû×Ö
 	}
 	return name;*/
 
-	//×¢ÒâµÄÎÊÌâ£º³¤Ãû×Ö¿Õ¼ä²»¹»ÔõÃ´½â¾ö
+	//æ³¨æ„çš„é—®é¢˜ï¼šé•¿åå­—ç©ºé—´ä¸å¤Ÿæ€ä¹ˆè§£å†³
 	char c;
 	int count = 0;
 	int size = 5;
@@ -266,7 +266,7 @@ char* InputName()//ÊäÈëÒ»¸öÃû×Ö
 	
 	
 }
-char* InputPhone()//ÊäÈëÒ»¸öµç»°ºÅ
+char* InputPhone()//è¾“å…¥ä¸€ä¸ªç”µè¯å·
 {
 	char c;
 	char* phone = (char*)malloc(13);
@@ -279,26 +279,26 @@ char* InputPhone()//ÊäÈëÒ»¸öµç»°ºÅ
 	*phone = 0;
 	return bj;
 }
-int InputNumber()//ÊäÈëÒ»¸ö±àºÅ
+int InputNumber()//è¾“å…¥ä¸€ä¸ªç¼–å·
 {
 	int n;
 	scanf("%d",&n);
 	getchar();
 	return n;
 }
-Node* InputNode()//ÊäÈëÒ»¸ö½Úµã
+Node* InputNode()//è¾“å…¥ä¸€ä¸ªèŠ‚ç‚¹
 {
 	Node* node = (Node*)malloc(sizeof(Node));
-	printf("ÇëÊäÈëÒ»¸öÃû×Ö£º\n");
+	printf("è¯·è¾“å…¥ä¸€ä¸ªåå­—ï¼š\n");
 	node->name = InputName();
-	printf("ÇëÊäÈëÒ»¸öµç»°ºÅ£º\n");
+	printf("è¯·è¾“å…¥ä¸€ä¸ªç”µè¯å·ï¼š\n");
 	node->phone = InputPhone();
-	printf("ÇëÊäÈëÒ»¸öÑ§ºÅ£º\n");
+	printf("è¯·è¾“å…¥ä¸€ä¸ªå­¦å·ï¼š\n");
 	node->xh = InputNumber();
 	node->pNext = NULL;
 	return node;
 }
-Node* GetNode()//»ñÈ¡Ò»¸ö½Úµã
+Node* GetNode()//è·å–ä¸€ä¸ªèŠ‚ç‚¹
 {
 	Node* node = (Node*)malloc(sizeof(Node));
 	node->name = GetName();
@@ -307,41 +307,41 @@ Node* GetNode()//»ñÈ¡Ò»¸ö½Úµã
 	node->pNext = NULL;
 	return node;
 }
-void InitInfo(Node** top,Node** end,int n)//³õÊ¼»¯ĞÅÏ¢
+void InitInfo(Node** top,Node** end,int n)//åˆå§‹åŒ–ä¿¡æ¯
 {
 	int i;
-	srand((unsigned int)time(0));//Ã¿´ÎÔËĞĞ³ÌĞòµÃµ½µÄËæ»úÊı¾İ¶¼²»Ò»Ñù
+	srand((unsigned int)time(0));//æ¯æ¬¡è¿è¡Œç¨‹åºå¾—åˆ°çš„éšæœºæ•°æ®éƒ½ä¸ä¸€æ ·
 	for(i = 0;i < n;i++)
 	{
-		//Ìí¼Ó½Úµã
+		//æ·»åŠ èŠ‚ç‚¹
 		AddNode(top,end,GetNode());
 	}
 	
 }
-void AddNode(Node** top,Node** end,Node* node)	//Ìí¼Ó
+void AddNode(Node** top,Node** end,Node* node)	//æ·»åŠ 
 {
-	//Á´±íÎª¿Õ
+	//é“¾è¡¨ä¸ºç©º
 	if(*top == NULL)
 	{
 		*top = node;
 		*end = node;
 	}
-	//Í·²åÈë ĞÂÀ´µÄ×÷ÎªÍ·Ö¸Õë
+	//å¤´æ’å…¥ æ–°æ¥çš„ä½œä¸ºå¤´æŒ‡é’ˆ
 	//(*top)->pNext = node;
-	//Î²²åÈë ĞÂÀ´µÄ×÷ÎªÎ²Ö¸Õë
+	//å°¾æ’å…¥ æ–°æ¥çš„ä½œä¸ºå°¾æŒ‡é’ˆ
 	else
 	{
 		(*end)->pNext = node;
 		*end = node;
 	}
 }
-void DelNode(Node** top,Node** end,int n)//É¾³ı			
+void DelNode(Node** top,Node** end,int n)//åˆ é™¤			
 {
 	Node* temp = *top;
 	Node* del = NULL;
 	//ShowALL(temp);
-	/*printf("ÇëÊäÈëÄúÒªÉ¾³ıµÄÑ§ºÅ£º\n");*/
-	//========================´Ë´¦ÓĞÎÊÌâ£¬Ó¦¸Ã½ÓÊÕÊı×Ö£¬ÊäÈëË«Î»Êı³ö´í=====================================
+	/*printf("è¯·è¾“å…¥æ‚¨è¦åˆ é™¤çš„å­¦å·ï¼š\n");*/
+	//========================æ­¤å¤„æœ‰é—®é¢˜ï¼Œåº”è¯¥æ¥æ”¶æ•°å­—ï¼Œè¾“å…¥åŒä½æ•°å‡ºé”™=====================================
 	/*int n = 0;
 	scanf("%d",&n);
 	getchar();
@@ -350,7 +350,7 @@ void DelNode(Node** top,Node** end,int n)//É¾³ı
 	n = atoi(InputName());*/
 	/*int n = InputNumber();*/
 
-	//Í·É¾³ı
+	//å¤´åˆ é™¤
 	if(temp->xh == n)
 	{
 		del = temp;
@@ -361,7 +361,7 @@ void DelNode(Node** top,Node** end,int n)//É¾³ı
 		/*ShowALL(*top);*/
 		return;
 	}
-	//ÖĞ¼äÉ¾³ı
+	//ä¸­é—´åˆ é™¤
 	while(temp->pNext != NULL)
 	{
 		if(temp->pNext->xh  == n)
@@ -370,7 +370,7 @@ void DelNode(Node** top,Node** end,int n)//É¾³ı
 			temp->pNext = temp->pNext->pNext;
 			free(del);
 			del = NULL;
-			//ÅĞ¶ÏÊÇ·ñÎªÎ²½Úµã
+			//åˆ¤æ–­æ˜¯å¦ä¸ºå°¾èŠ‚ç‚¹
 			if(temp->pNext == *end)
 			{
 				*end = temp;
@@ -383,13 +383,13 @@ void DelNode(Node** top,Node** end,int n)//É¾³ı
 	}
 	
 }
-void LookTXL(Node* top)//²é¿´
+void LookTXL(Node* top)//æŸ¥çœ‹
 {
 	
 	Page* page = InitPage(top,20);
 	OperatePage(page,top);	
 }
-void QueryTXL(Node* top)//²éÑ¯
+void QueryTXL(Node* top)//æŸ¥è¯¢
 {
 	char* keyword = (char*)malloc(12);
 	Node* bj = top;
@@ -397,14 +397,14 @@ void QueryTXL(Node* top)//²éÑ¯
 	Node* del = NULL;
 	Node* newTop = NULL;
 	Node* newEnd = NULL;
-	//ÈôÎªÄ£ºı²éÑ¯£¬Ó¦¸ÃÔõÃ´Ğ´´úÂë£¿£¿£¿
+	//è‹¥ä¸ºæ¨¡ç³ŠæŸ¥è¯¢ï¼Œåº”è¯¥æ€ä¹ˆå†™ä»£ç ï¼Ÿï¼Ÿï¼Ÿ
 	while(1)
 	{
 		while(1)
 		{
-			printf("ÇëÊäÈëÄúÒª²éÑ¯µÄ¹Ø¼ü×Ö£º\n");
+			printf("è¯·è¾“å…¥æ‚¨è¦æŸ¥è¯¢çš„å…³é”®å­—ï¼š\n");
 			keyword = InputName();
-			printf("°´yÈ·¶¨£¬ÆäËûÇëÖØĞÂÊäÈë£º\n");
+			printf("æŒ‰yç¡®å®šï¼Œå…¶ä»–è¯·é‡æ–°è¾“å…¥ï¼š\n");
 			if(GetKey() == 'y')
 				break;
 			else
@@ -426,17 +426,17 @@ void QueryTXL(Node* top)//²éÑ¯
 				node->phone = bj->phone;
 				node->name = bj->name;
 				node->pNext = NULL;
-				//½«ËùÓĞ²éÑ¯µ½µÄ½Úµã£¬·Åµ½Ò»¸öĞÂµÄÁ´±íÉÏ
+				//å°†æ‰€æœ‰æŸ¥è¯¢åˆ°çš„èŠ‚ç‚¹ï¼Œæ”¾åˆ°ä¸€ä¸ªæ–°çš„é“¾è¡¨ä¸Š
 				AddNode(&newTop,&newEnd,node);
 			}
 			bj = bj->pNext;
 		}
 		if(newTop == NULL)
-			printf("Ã»ÕÒµ½£¡\n");
+			printf("æ²¡æ‰¾åˆ°ï¼\n");
 		else
 		{
 			LookTXL(newTop);
-			//É¾³ı²éÑ¯µ½µÄËùÓĞ½á¹û
+			//åˆ é™¤æŸ¥è¯¢åˆ°çš„æ‰€æœ‰ç»“æœ
 			while(newTop)
 			{
 				del = newTop;
@@ -456,20 +456,20 @@ void QueryTXL(Node* top)//²éÑ¯
 			return;
 	}
 }
-void DelTXL(Node** top,Node** end)//É¾³ı	
+void DelTXL(Node** top,Node** end)//åˆ é™¤	
 {
 	int xh;
 	char key;
 	while(1)
 	{
-		printf("Çë²éÑ¯ÄúËùÒªÉ¾³ıµÄÑ§ºÅ£¡\n");
+		printf("è¯·æŸ¥è¯¢æ‚¨æ‰€è¦åˆ é™¤çš„å­¦å·ï¼\n");
 		QueryTXL(*top);
 		if(g_key == 'b')
 			return;
-		printf("ÇëÊäÈëÄúÒªÉ¾³ıµÄÑ§ºÅ£º\n");
+		printf("è¯·è¾“å…¥æ‚¨è¦åˆ é™¤çš„å­¦å·ï¼š\n");
 		xh = atoi(InputName());
 		DelNode(top,end,xh);
-		printf("°´y¼ÌĞøÉ¾³ı£¬ÆäËû¼ü·µ»ØÖ÷²Ëµ¥£¡\n");
+		printf("æŒ‰yç»§ç»­åˆ é™¤ï¼Œå…¶ä»–é”®è¿”å›ä¸»èœå•ï¼\n");
 		key = GetKey();
 		if(key == 'y')
 			;
@@ -480,29 +480,29 @@ void DelTXL(Node** top,Node** end)//É¾³ı
 	
 	
 }
-void UpDateTXL(Node* top)//ĞŞ¸Ä
+void UpDateTXL(Node* top)//ä¿®æ”¹
 {
 	int xh;
 	char key = 0;
 	Node* bj = top;
 	while(1)
 	{
-		printf("Çë²éÑ¯ÄúÒªĞŞ¸ÄµÄĞÅÏ¢£º\n");
+		printf("è¯·æŸ¥è¯¢æ‚¨è¦ä¿®æ”¹çš„ä¿¡æ¯ï¼š\n");
 		QueryTXL(top);
 		if(g_key == 'b')
 			return;
-		printf("ÇëÊäÈëÄúÒªĞŞ¸ÄµÄĞÅÏ¢µÄ±àºÅ£º\n");
+		printf("è¯·è¾“å…¥æ‚¨è¦ä¿®æ”¹çš„ä¿¡æ¯çš„ç¼–å·ï¼š\n");
 		xh = atoi(InputName());
 		bj = top;
 		while(bj)
 		{
 			if(bj->xh == xh)
 			{
-				printf("ÇëÊäÈë±àºÅ%dµÄĞÂÃû×Ö",bj->xh);
+				printf("è¯·è¾“å…¥ç¼–å·%dçš„æ–°åå­—",bj->xh);
 				bj->name = InputName();
-				printf("ÇëÊäÈë±àºÅ%dµÄĞÂµç»°ºÅÂë",bj->xh);
+				printf("è¯·è¾“å…¥ç¼–å·%dçš„æ–°ç”µè¯å·ç ",bj->xh);
 				bj->phone = InputPhone();
-				printf("°´y¼ÌĞøĞŞ¸Ä£¬ÆäËû¼ü·µ»ØÖ÷²Ëµ¥£¡\n");
+				printf("æŒ‰yç»§ç»­ä¿®æ”¹ï¼Œå…¶ä»–é”®è¿”å›ä¸»èœå•ï¼\n");
 				key =GetKey();
 				if(key == 'y')
 					break;
@@ -512,24 +512,24 @@ void UpDateTXL(Node* top)//ĞŞ¸Ä
 			bj=bj->pNext;		
 		}
 		if(bj == NULL)
-			printf("Ã»ÕÒµ½ÄúÒªĞŞ¸ÄµÄĞÅÏ¢£¡\n");		
+			printf("æ²¡æ‰¾åˆ°æ‚¨è¦ä¿®æ”¹çš„ä¿¡æ¯ï¼\n");		
 	}
 }
-void ShowALL(Node* top)//È«²¿ÏÔÊ¾
+void ShowALL(Node* top)//å…¨éƒ¨æ˜¾ç¤º
 {
-	printf("Ñ§ºÅ\tÃû×Ö\tµç»°ºÅ\t\n");
+	printf("å­¦å·\tåå­—\tç”µè¯å·\t\n");
 	while(top)
 	{
 		printf("%d\t%s\t%s\t\n",top->xh,top->name,top->phone);
 		top = top->pNext;
 	}
 }
-void Show(Node* top,Page* page)//ÏÔÊ¾µ¥Ò³ĞÅÏ¢
+void Show(Node* top,Page* page)//æ˜¾ç¤ºå•é¡µä¿¡æ¯
 {
 	int count =0;
 	int begin = (page->CurrentPage-1) * page->OnePageItem + 1;
 	int end = page->CurrentPage * page->OnePageItem;
-	printf("Ñ§ºÅ\tÃû×Ö\tµç»°ºÅ\t\n");
+	printf("å­¦å·\tåå­—\tç”µè¯å·\t\n");
 	while(top)
 	{
 		count++;
@@ -544,23 +544,23 @@ void ShowMenu(Page* page)
 	switch(g_menu_type)
 	{
 		case 1:
-			printf("¹²%dÌõ ¹²%dÒ³ µ±Ç°µÚ%dÒ³ ÉÏÒ»Ò³(w) ÏÂÒ»Ò³(s) ·µ»Ø(b) \n",page->TotalItem,page->TotalPage,page->CurrentPage);
+			printf("å…±%dæ¡ å…±%dé¡µ å½“å‰ç¬¬%dé¡µ ä¸Šä¸€é¡µ(w) ä¸‹ä¸€é¡µ(s) è¿”å›(b) \n",page->TotalItem,page->TotalPage,page->CurrentPage);
 			break;
 		case 2:
-			printf("¹²%dÌõ ¹²%dÒ³ µ±Ç°µÚ%dÒ³ ÉÏÒ»Ò³(w) ÏÂÒ»Ò³(s) ¼ÌĞø²éÑ¯(c) ·µ»Ø(b) \n",page->TotalItem,page->TotalPage,page->CurrentPage);
+			printf("å…±%dæ¡ å…±%dé¡µ å½“å‰ç¬¬%dé¡µ ä¸Šä¸€é¡µ(w) ä¸‹ä¸€é¡µ(s) ç»§ç»­æŸ¥è¯¢(c) è¿”å›(b) \n",page->TotalItem,page->TotalPage,page->CurrentPage);
 			break;		
 		case 4:
-			printf("¹²%dÌõ ¹²%dÒ³ µ±Ç°µÚ%dÒ³ ÉÏÒ»Ò³(w) ÏÂÒ»Ò³(s) É¾³ı(d) ·µ»Ø(b) \n",page->TotalItem,page->TotalPage,page->CurrentPage);
+			printf("å…±%dæ¡ å…±%dé¡µ å½“å‰ç¬¬%dé¡µ ä¸Šä¸€é¡µ(w) ä¸‹ä¸€é¡µ(s) åˆ é™¤(d) è¿”å›(b) \n",page->TotalItem,page->TotalPage,page->CurrentPage);
 			break;
 		case 5:
-			printf("¹²%dÌõ ¹²%dÒ³ µ±Ç°µÚ%dÒ³ ÉÏÒ»Ò³(w) ÏÂÒ»Ò³(s) ĞŞ¸Ä(u) ·µ»Ø(b) \n",page->TotalItem,page->TotalPage,page->CurrentPage);
+			printf("å…±%dæ¡ å…±%dé¡µ å½“å‰ç¬¬%dé¡µ ä¸Šä¸€é¡µ(w) ä¸‹ä¸€é¡µ(s) ä¿®æ”¹(u) è¿”å›(b) \n",page->TotalItem,page->TotalPage,page->CurrentPage);
 	}
 	
 }
 Page* InitPage(Node* top,int OnePageItem)
 {
-	//¼ÆËã³öµ±Ç°Á´±íÖĞ·ÖÒ³µÄĞÅÏ¢
-	//°üÀ¨·ÖÒ³µÄ×ÜÊıÄ¿¡¢Ò»Ò³ÏÔÊ¾µÄ¸öÊı¡¢×ÜÒ³Êı¡¢µ±Ç°Ò³
+	//è®¡ç®—å‡ºå½“å‰é“¾è¡¨ä¸­åˆ†é¡µçš„ä¿¡æ¯
+	//åŒ…æ‹¬åˆ†é¡µçš„æ€»æ•°ç›®ã€ä¸€é¡µæ˜¾ç¤ºçš„ä¸ªæ•°ã€æ€»é¡µæ•°ã€å½“å‰é¡µ
 	Page* page = (Page*)malloc(sizeof(Page));
 	page->CurrentPage = 0;
 	page->OnePageItem = OnePageItem;
@@ -571,7 +571,7 @@ Page* InitPage(Node* top,int OnePageItem)
 		top = top->pNext;
 	}
 	page->TotalPage = page->TotalItem % page->OnePageItem == 0 ? page->TotalItem / page->OnePageItem : page->TotalItem / page->OnePageItem + 1;
-	//ÓÅÏÈ¼¶´Ó¸ßµ½µÍË³Ğò£º->	/	==	?:	= 
+	//ä¼˜å…ˆçº§ä»é«˜åˆ°ä½é¡ºåºï¼š->	/	==	?:	= 
 	return page;
 }
 void OperatePage(Page* page,Node* top)
@@ -583,7 +583,7 @@ void OperatePage(Page* page,Node* top)
 		{
 			case 's':
 				if(page->CurrentPage == page->TotalPage)
-					printf("ÒÑ¾­ÊÇ×îºóÒ»Ò³ÁË£¡\n");
+					printf("å·²ç»æ˜¯æœ€åä¸€é¡µäº†ï¼\n");
 				else
 				{
 					page->CurrentPage++;
@@ -593,7 +593,7 @@ void OperatePage(Page* page,Node* top)
 				break;
 			case 'w':
 				if(page->CurrentPage == 1)
-					printf("ÒÑ¾­ÊÇµÚÒ»Ò³ÁË£¡\n");
+					printf("å·²ç»æ˜¯ç¬¬ä¸€é¡µäº†ï¼\n");
 				else
 				{
 					page->CurrentPage--;
@@ -610,11 +610,11 @@ void OperatePage(Page* page,Node* top)
 			case 'u':
 				break;
 			default:
-				printf("ÊäÈë´íÎó£¬ÇëÖØĞÂÊäÈë£º\n");
+				printf("è¾“å…¥é”™è¯¯ï¼Œè¯·é‡æ–°è¾“å…¥ï¼š\n");
 				break;
 		}
 		g_key = key = GetKey();
 		if(key == 'c' || key == 'd' || key == 'u')
-			return;//break;¾ù¿É£¬¶¼ÊÇÖÕÖ¹Ñ­»·£¬ÍË³öÑ­»·Ìå
+			return;//break;å‡å¯ï¼Œéƒ½æ˜¯ç»ˆæ­¢å¾ªç¯ï¼Œé€€å‡ºå¾ªç¯ä½“
 	}
 }
